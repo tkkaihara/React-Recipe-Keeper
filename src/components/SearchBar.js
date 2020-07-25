@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { RecipeContext } from "./App";
 
-export default function SearchBar(props) {
+export default function SearchBar({ query, recipes }) {
   const { handleSearchRecipes } = useContext(RecipeContext);
-  const { query } = props;
 
   return (
     <>
       <input
         type="text"
-        onChange={handleSearchRecipes(query)}
+        onChange={() => handleSearchRecipes(query)}
         placeholder="Search Recipes..."
       />
     </>
