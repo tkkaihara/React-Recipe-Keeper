@@ -31,6 +31,7 @@ function App() {
     handleRecipeSelect,
     handleRecipeChange,
     handleSearchRecipes,
+    experiment,
   };
 
   function handleRecipeSelect(id) {
@@ -68,6 +69,10 @@ function App() {
   function handleSearchRecipes(query) {
     setQuery(query);
     recipes.filter((recipe) => recipe.name === query);
+  }
+
+  function experiment() {
+    console.log("experiment");
   }
 
   return (
