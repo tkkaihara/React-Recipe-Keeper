@@ -11,7 +11,7 @@ const LOCAL_STORAGE_KEY = "cookingWithReact.recipes";
 function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState();
   const [recipes, setRecipes] = useState(sampleRecipes);
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState("");
   const selectedRecipe = recipes.find(
     (recipe) => recipe.id === selectedRecipeId
   );
@@ -31,7 +31,6 @@ function App() {
     handleRecipeSelect,
     handleRecipeChange,
     handleSearchRecipes,
-    experiment,
   };
 
   function handleRecipeSelect(id) {
@@ -66,19 +65,18 @@ function App() {
     setRecipes(recipes.filter((recipe) => recipe.id !== id));
   }
 
-  function handleSearchRecipes(query) {
-    setQuery(query);
-    recipes.filter((recipe) => recipe.name === query);
+  function handleSearchRecipes(event) {
+    setQuery(event.target.value);
   }
 
-  function experiment() {
-    console.log("experiment");
-  }
+  let filteredRecipes = recipes.filter((recipe) => {
+    return recipe.name.toLowerCase().includes(query.toLowerCase());
+  });
 
   return (
     <RecipeContext.Provider value={recipeContextValue}>
       <SearchBar recipes={recipes} query={query} />
-      <RecipeList recipes={recipes} />
+      <RecipeList filteredRecipes={filteredRecipes} />
       {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   );
