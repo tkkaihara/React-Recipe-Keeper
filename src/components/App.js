@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import RecipeList from "./RecipeList";
 import RecipeEdit from "./RecipeEdit";
 import SearchBar from "./SearchBar";
@@ -45,6 +46,9 @@ function App() {
       cookTime: "",
       instructions: "",
       ingredients: [{ id: uuidv4(), name: "", amount: "" }],
+      authors: [
+        { id: uuidv4(), name: "", date: moment().format("MMM Do YYYY") },
+      ],
     };
 
     setSelectedRecipeId(newRecipe.id);
@@ -106,6 +110,13 @@ const sampleRecipes = [
         amount: "1 Cup",
       },
     ],
+    authors: [
+      {
+        id: 4554,
+        name: "Mary Berry",
+        date: moment().format("MMM Do YYYY"),
+      },
+    ],
   },
   {
     id: 2,
@@ -123,6 +134,13 @@ const sampleRecipes = [
         id: 2,
         name: "Salt",
         amount: "2 Tbsp",
+      },
+    ],
+    authors: [
+      {
+        id: 45,
+        name: "Mary Berry",
+        date: moment().format("MMM Do YYYY"),
       },
     ],
   },
